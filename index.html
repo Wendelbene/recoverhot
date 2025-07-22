@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Suporte Microsoft - Recuperação de Conta</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            background-color: #f3f2f1;
+            margin: 0;
+            padding: 0;
+            color: #323130;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 500px;
+            width: 100%;
+            padding: 20px;
+        }
+        
+        .card {
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 1.6px 3.6px 0 rgba(0,0,0,.132), 0 0.3px 0.9px 0 rgba(0,0,0,.108);
+            padding: 30px;
+            text-align: center;
+        }
+        
+        .logo {
+            width: 120px;
+            margin-bottom: 20px;
+        }
+        
+        h1 {
+            color: #0078d4;
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+        
+        p {
+            margin-bottom: 25px;
+            line-height: 1.5;
+        }
+        
+        .btn {
+            background-color: #0078d4;
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            width: 100%;
+            font-size: 16px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s;
+            text-decoration: none;
+            display: inline-block;
+        }
+        
+        .btn:hover {
+            background-color: #106ebe;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        
+        .alert {
+            background-color: #fff4ce;
+            padding: 15px;
+            border-radius: 4px;
+            margin: 20px 0;
+            text-align: left;
+        }
+        
+        .footer {
+            margin-top: 30px;
+            font-size: 12px;
+            color: #605e5c;
+            text-align: center;
+        }
+        
+        .error-message {
+            color: #d83b01;
+            background-color: #fde7e9;
+            padding: 15px;
+            border-radius: 4px;
+            margin-top: 20px;
+            display: none;
+        }
+        
+        .loading-spinner {
+            display: none;
+            width: 24px;
+            height: 24px;
+            border: 3px solid rgba(255,255,255,0.3);
+            border-radius: 50%;
+            border-top-color: white;
+            animation: spin 1s ease-in-out infinite;
+            margin: 0 auto;
+        }
+        
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="card">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/9/96/Microsoft_logo_%282012%29.svg" alt="Microsoft" class="logo">
+            
+            <h1>Recuperação de Conta Microsoft</h1>
+            
+            <p>Se você está tendo problemas para acessar sua conta Hotmail, Outlook ou Microsoft, podemos ajudar a recuperar seu acesso.</p>
+            
+            <div class="alert">
+                <strong>Importante:</strong> Este serviço oficial da Microsoft ajuda você a recuperar contas bloqueadas ou comprometidas.
+            </div>
+            
+            <button class="btn" id="recoveryBtn">
+                <span id="btnText">Iniciar Recuperação de Conta</span>
+                <div class="loading-spinner" id="spinner"></div>
+            </button>
+            
+            <div class="error-message" id="errorMsg">
+                O sistema de recuperação não está disponível no momento. Por favor, tente novamente mais tarde.
+            </div>
+            
+            <div class="footer">
+                © 2025 Microsoft Corporation<br>
+                <a href="#" style="color: #0078d4;">Termos de uso</a> | 
+                <a href="#" style="color: #0078d4;">Privacidade</a> | 
+                <a href="#" style="color: #0078d4;">Suporte</a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('recoveryBtn').addEventListener('click', function() {
+            const btn = this;
+            const btnText = document.getElementById('btnText');
+            const spinner = document.getElementById('spinner');
+            const errorMsg = document.getElementById('errorMsg');
+            
+            // Mostrar loading
+            btnText.style.display = 'none';
+            spinner.style.display = 'block';
+            btn.disabled = true;
+            errorMsg.style.display = 'none';
+            
+            // Verificar se o arquivo recoverhot.html existe
+            checkRecoveryPage();
+            
+            function checkRecoveryPage() {
+                fetch('recoverhot.html', { method: 'HEAD' })
+                    .then(response => {
+                        if (response.ok) {
+                            // Redirecionar para recoverhot.html
+                            window.location.href = 'recoverhot.html';
+                        } else {
+                            throw new Error('Página não encontrada');
+                        }
+                    })
+                    .catch(error => {
+                        console.error('Erro:', error);
+                        showError();
+                    });
+            }
+            
+            function showError() {
+                btnText.style.display = 'inline';
+                spinner.style.display = 'none';
+                btn.disabled = false;
+                errorMsg.style.display = 'block';
+            }
+        });
+
+        // Redirecionar se acessar recoverhot.html diretamente
+        if (window.location.pathname.includes('recoverhot.html')) {
+            window.location.href = './index.html';
+        }
+    </script>
+</body>
+</html>
